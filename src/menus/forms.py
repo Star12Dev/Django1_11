@@ -15,7 +15,7 @@ class ItemForm(forms.ModelForm):
             'public'
         ]
     def __init__(self, user=None, *args, **kwargs):
-        #print(kwargs.pop('user'))
+        
         print(user)
         print(kwargs)
         super(ItemForm, self).__init__(*args,**kwargs)

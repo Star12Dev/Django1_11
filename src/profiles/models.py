@@ -23,7 +23,7 @@ class ProfileManager(models.Manager):
 class Profile(models.Model):
     user              = models.OneToOneField(User) # user.profile
     followers         = models.ManyToManyField(User, related_name='is_following', blank=True) # user.is_following.all()
-    #following         = models.ManyToManyField(User, related_name='following', blank=True) # user.following.all()
+    
     activation_key    = models.CharField(max_length=120, blank=True, null=True)
     activated         = models.BooleanField(default=False)
     timestamp         = models.DateTimeField(auto_now_add=True)
@@ -38,7 +38,7 @@ class Profile(models.Model):
         if not self.activated:
             self.activation_key = code_generator()# 'somekey' #gen key
             self.save()
-            #path_ = reverse()
+            
             path_ = reverse('activate', kwargs={"code": self.activation_key})
             full_path = "https://muypicky.com" + path_
             subject = 'Activate Account'
